@@ -1,0 +1,16 @@
+if [ $# -ne 3 ]; then
+  echo "用法: $0 <文件路径> <搜索内容> <结果保存文件路径>"
+  exit 1
+fi
+
+file_path=$1
+search_content=$2
+result_file=$3
+
+# 搜索内容并保存结果到文件
+grep -n "$search_content" "$file_path" > "$result_file"
+
+# 显示结果到控制台
+cat "$result_file"
+
+echo "搜索结果已保存到文件: $result_file"
