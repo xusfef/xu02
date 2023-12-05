@@ -1,0 +1,34 @@
+server:
+  port: 7070
+
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql:///test?serverTimezone=UTC
+    username: root
+    password: etoak
+    druid:
+      initial-size: 20
+      max-active: 40
+  servlet:
+    multipart:
+      max-file-size: 2MB
+
+pagehelper:
+  # 参数不规范（超出的页数）默认查询最后一页
+  reasonable: true
+
+mybatis-plus:
+  type-aliases-package: com.etoak
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# 自定义配置
+image:
+  directory: d:/upload/test/
+  prefix: /files/
+  types:
+    - image/jpeg
+    - image/png

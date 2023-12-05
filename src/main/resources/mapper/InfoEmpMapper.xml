@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oak.system.mapper.InfoEmpMapper">
+
+
+    <select id="getInfoList" resultType="com.oak.system.entity.InfoEmp">
+        select id,
+        emp_name,
+        sex,
+        age,
+        dept_name,
+        emp_degree_name
+        from test_emp
+        <where>
+            <if test="empName != null and empName != ''">
+                AND emp_name like concat(#{empName}, '%')
+            </if>
+            <if test="deptName != null and deptName != ''">
+                AND dept_name = #{deptName}
+            </if>
+            <if test="empDegreeName != null and empDegreeName != ''">
+                AND emp_degree_name = #{empDegreeName}
+            </if>
+        </where>
+        <if test="sortState != null and sortState == 1">
+            ORDER BY id
+        </if>
+        <if test="sortState != null and sortState == 0">
+            ORDER BY id DESC
+        </if>
+    </select>
+</mapper>
